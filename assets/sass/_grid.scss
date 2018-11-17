@@ -1,0 +1,33 @@
+body {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "sidebar"
+    "footer";
+
+  @media only screen and (min-width: $media__breakpoint1) {
+    // Code for larger devices
+    grid-template-columns: auto $sidebar_width;
+    grid-template-areas:
+      "header header"
+      "main sidebar"
+      "footer footer";
+  }
+}
+
+#masthead {
+  grid-area: header;
+}
+
+#main {
+  grid-area: main;
+}
+
+#secondary {
+  grid-area: sidebar;
+}
+
+#colophon {
+  grid-area: footer;
+}
