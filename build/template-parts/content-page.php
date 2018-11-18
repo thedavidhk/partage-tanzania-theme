@@ -15,9 +15,11 @@
   </header><!-- .entry-header -->
 
   <div class="entry-content">
-    <?php
-    the_content();
-    ?>
+    <section class="page-section <?php echo get_post_field( 'post_name' ); ?>-section1">
+      <?php
+      the_content();
+      ?>
+    </section>
   </div><!-- .entry-content -->
 
 </article><!-- #post-<?php the_ID(); ?> -->
