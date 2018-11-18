@@ -118,3 +118,20 @@ function partage_tanzania_scripts() {
   wp_enqueue_style( 'partage-tanzania-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'partage_tanzania_scripts' );
+
+function ptz_parse_sections( $content ) {
+	if (is_singular()) {
+		$string = $content;
+		$pattern = '#<hr[^>]*>#';
+		$num_seperators = preg_match_all( $pattern, $string );
+
+		for ($i=1; $i <= $num_seperators; $i++) {
+			$classes = 'page-section ' . $GLOBALS['post']->post_name . '-section' . ($i + 1);
+			$replacement = '</section><section class="' . $classes . '">';
+			$content = preg_replace( $pattern, $replacement, $string, 1 );
+			$string = $content;
+		}
+	}
+	return $content;
+}
+add_filter( 'the_content', 'ptz_parse_sections' );
